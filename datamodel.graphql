@@ -1,0 +1,16 @@
+type Recursive {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String! @unique
+  sort: Int! @default(value: 0)
+  parent: Recursive @relation(name: "ParentRecursiveToChildRecursive")
+  children: [Recursive!]! @relation(name: "ParentRecursiveToChildRecursive")
+}
+
+type A {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  recursives: [Recursive!]!
+}

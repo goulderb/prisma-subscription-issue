@@ -1,0 +1,36 @@
+Subscription:
+subscription {
+  a {
+    node {
+      id
+    }
+  }
+}
+
+Create:
+mutation {
+  createA(data: {
+    recursives: {
+      create: {
+        name: "Test 1"
+        children: {
+          create: [
+            {
+              name: "Test 2"
+            }
+          ]
+        }
+      }
+    }
+  }) {
+    id
+    recursives {
+      id
+      name
+      children {
+        id
+        name
+      }
+    }
+  }
+}
