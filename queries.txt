@@ -1,4 +1,25 @@
-Subscription:
+The subscription below is the simplest case that reproduces this behavior for me.
+
+subscription {
+  recursive {
+    node {
+      id
+    }
+  }
+}
+
+You can run this mutation along the above subscription in the playground to see this issue.
+
+mutation {
+  createRecursive(
+    data: { name: "Test 123", children: { create: [{ name: "Test 321" }] } }
+  ) {
+    id
+  }
+}
+
+This demonstrates that types referencing types with recursive relationships also do not fire.
+
 subscription {
   a {
     node {
@@ -7,7 +28,8 @@ subscription {
   }
 }
 
-Create:
+You can run this mutation along the above subscription in the playground to see this issue.
+
 mutation {
   createA(data: {
     recursives: {
